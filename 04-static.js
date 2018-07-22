@@ -8,6 +8,6 @@ app.use(static(path.join(__dirname, './static')))
 app.use(async (ctx)=>{
 
 })
-app.listen(3000, ()=>{
-  console.log('localhost:3000')
+app.listen(3001, ()=>{
+  console.log('localhost:3001')
 })

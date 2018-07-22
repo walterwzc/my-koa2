@@ -4,10 +4,16 @@ const printLog = require('./koa-middleware')
 
 app.use(printLog('abc'))
 
-app.use(async (ctx) => {
-  ctx.body = 'hello world'
-})
+// app.use(async (ctx) => {
+//     ctx.body = 'hello world'
+// })
 
-app.listen(3000, () => {
-  console.log('localhost:3000');
+const mainProcess = ctx => {
+    ctx.body = 'hello world'
+}
+
+app.use(mainProcess)
+
+app.listen(3001, () => {
+    console.log('localhost:3001')
 })

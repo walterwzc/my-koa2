@@ -1,34 +1,37 @@
 const Koa = require('koa')
-const mysql = require('mysql');
+const mysql = require('mysql')
 const app = new Koa()
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'sharebikes'
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'sharebikes'
 })
 
 const getResult = () => {
-  return new Promise((resolve, reject) => {
-    connection.query('select * from bikes', function (error, results, fields) {
-      if (error) throw error
-      resolve(results)
+    return new Promise((resolve, reject) => {
+        connection.query('select * from bikes', function(
+            error,
+            results,
+            fields
+        ) {
+            if (error) throw error
+            resolve(results)
+        })
     })
-  })
 }
 
-app.use(async (ctx)=>{
+app.use(async ctx => {
+    connection.connect()
 
-  connection.connect()
+    const res = await getResult()
 
-  const res = await getResult()
+    ctx.body = res
 
-  ctx.body = res
-
-  connection.end()
+    connection.end()
 })
 
-app.listen(3000, ()=>{
-  console.log('localhost:3000')
+app.listen(3001, () => {
+    console.log('localhost:3001')
 })
