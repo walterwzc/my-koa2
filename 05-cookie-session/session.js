@@ -23,6 +23,7 @@ app.use(
 )
 
 const user = new Router()
+
 user.get('/signin', ctx => {
     if (ctx.session.username) {
         // ctx.body = '用户已经登录.'
@@ -47,7 +48,7 @@ router.use('/api', user.routes())
 
 app.use(router.routes())
 
-app.use(async ctx => {})
+// app.use(async ctx => {})
 
 app.listen(3001, () => {
     console.log('localhost:3001')

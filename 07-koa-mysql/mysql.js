@@ -11,12 +11,10 @@ const connection = mysql.createConnection({
 
 const getResult = () => {
     return new Promise((resolve, reject) => {
-        connection.query('select * from bikes', function(
-            error,
-            results,
-            fields
-        ) {
-            if (error) throw error
+        connection.query('select * from bikes', function(error, results,fields) {
+            if (error) {
+                throw error
+            }
             resolve(results)
         })
     })

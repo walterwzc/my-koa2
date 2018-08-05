@@ -15,9 +15,10 @@ home.get('/', ctx => {
 
 // api路径之后的router
 const user = new Router()
-user.post('/signin', ctx => {
+
+user.get('/signin', ctx => {
     ctx.body = 'signin'
-}).post('/signup', ctx => {
+}).get('/signup', ctx => {
     ctx.body = 'signup'
 })
 
@@ -27,7 +28,7 @@ const router = new Router()
 router.use('/', home.routes())
 
 // 渲染路由页面
-router.use('/api', user.routes())
+router.use('/user', user.routes())
 
 app.use(router.routes())
 

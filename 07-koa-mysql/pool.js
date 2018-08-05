@@ -11,7 +11,9 @@ var pool = mysql.createPool({
 const find = (sql, values) => {
     return new Promise((resolve, reject) => {
         pool.query(sql, values, function(error, results, fields) {
-            if (error) reject()
+            if (error) {
+                reject()
+            }
             resolve(results)
         })
     })
